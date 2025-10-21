@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 dict = {'UUU':'F', 'CUU':'L',    'AUU' :'I'  ,    'GUU' :'V',
 'UUC' :'F'  ,   'CUC': 'L' ,    'AUC' :'I',     'GUC': 'V',
 'UUA' :'L'   ,  'CUA': 'L',     'AUA' :'I'  ,    'GUA':'V',
@@ -33,5 +34,19 @@ rna_sequence = input("ENTER THE RNA SEQUENCE TO MAKE PROTEIN:").upper()
 amino_acid,codon = translate_rna(rna_sequence)
 print("amino acid:", amino_acid)
 print("codon:", codon)
+
+plt.figure(figsize=(8,3))
+plt.scatter(range(len(codon)), [1]*len(codon), s=200, c='blue')
+
+for i,(c,aa) in enumerate(zip(codon, amino_acid)):
+    plt.text(i, 1.1, c, ha='center')
+    plt.text(i, 0.9, aa, ha='center', color='pink', fontweight='bold')
+    
+plt.yticks([])
+plt.xticks(range(len(codon)))
+plt.xlabel("Codon index")
+plt.title("RNA → Protein (codon → amino acid)")
+plt.tight_layout()
+plt.show()
 
 
